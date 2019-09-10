@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'commonComponents/customCard.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title, this.uid})
