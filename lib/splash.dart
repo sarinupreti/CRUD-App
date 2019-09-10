@@ -12,19 +12,38 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
+
+  ///[initState] check if there is account or not. if there is account. the user is navigated to home screen. if user account is not found the user is redirected to login page.
+  /// check if there is account or not. if there is account. the user is navigated to home screen. if user account is not found the user is redirected to login page.
+
   initState() {
+    ///The entry point of the Firebase Authentication SDK
+    /// [instance ] : Provides an instance of this class corresponding to the default app.
     FirebaseAuth.instance
         .currentUser()
         .then((currentUser) => {
+              /// check if current user is null or not.
               if (currentUser == null)
+
+                ///[if] not null navigate to login page.
                 {Navigator.pushReplacementNamed(context, "/login")}
               else
                 {
+                  ///[else] get user data from firestore database .
+                  ///[collection] Gets a Collection Reference for the specified Firestore path.
+                  /// [document] Returns a DocumentReference with the provided path.
+                  ///If no [path] is provided, an auto-generated ID is used.
+                  ///The unique key generated is prefixed with a client-generated timestamp so that the resulting list will be chronologically-sorted.
+                  ///[get] Reads the document referenced by this [DocumentReference].
+                  ///If no document exists, the read will return null.
+                  ///[then] Register callbacks to be called when this future completes.
                   Firestore.instance
                       .collection("users")
                       .document(currentUser.uid)
                       .get()
                       .then((DocumentSnapshot result) =>
+
+                          ///navigates to the home page.
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -35,6 +54,8 @@ class _SplashPageState extends State<SplashPage> {
                       .catchError((err) => print(err))
                 }
             })
+
+        /// catch error if the network call is not success and then prints error in console.
         .catchError((err) => print(err));
     super.initState();
   }

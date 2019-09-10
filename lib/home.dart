@@ -5,14 +5,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title, this.uid})
       : super(key: key); //update this to include the uid in the constructor
+
+  /// create a variable to save the data passed through navigation . if you look at splash screen where the user navigates to home page. title and user id or uid is passed throught it
   final String title;
-  final String uid; //include this
+  final String uid;
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  ///[TextEditingController] A controller for an editable text field.
+  ///Whenever the user modifies a text field with an associated [TextEditingController], the text field updates [value] and the controller notifies its listeners. Listeners can then read the [text] and [selection] properties to learn what the user has typed or how the selection has been updated.
   TextEditingController taskTitleInputController;
   TextEditingController taskDescripInputController;
   FirebaseUser currentUser;
@@ -25,12 +29,14 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  ///[getCurrentUser] gets the current user  data from database
   void getCurrentUser() async {
     currentUser = await FirebaseAuth.instance.currentUser();
   }
 
   @override
   Widget build(BuildContext context) {
+    ///[deleteData] deletes a document from firestore database.
     deleteData(docId) {
       Firestore.instance
           .collection("users")
@@ -52,6 +58,7 @@ class _HomePageState extends State<HomePage> {
             child: Text("Log Out"),
             textColor: Colors.white,
             onPressed: () {
+              ///[FirebaseAuth.instance.signOut()] logouts the user.
               FirebaseAuth.instance
                   .signOut()
                   .then((result) =>
@@ -64,6 +71,10 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Container(
             padding: const EdgeInsets.all(20.0),
+
+            ///[StreamBuilder] Creates a new [StreamBuilder] that builds itself based on the latest snapshot of interaction with the specified [stream] and whose build strategy is given by [builder].
+            ///The [initialData] is used to create the initial snapshot.
+            ///The [builder] must not be null.
             child: StreamBuilder<QuerySnapshot>(
                 stream: Firestore.instance
                     .collection("users")
@@ -71,6 +82,8 @@ class _HomePageState extends State<HomePage> {
                     .collection('tasks')
                     .snapshots(),
                 builder: (BuildContext context,
+
+                    ///[AsyncSnapshot] Immutable representation of the most recent interaction with an asynchronous computation.
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
