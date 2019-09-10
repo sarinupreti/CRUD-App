@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "389301872932",
+    "firebase_url": "https://gameflix-6afb2.firebaseio.com",
+    "project_id": "gameflix-6afb2",
+    "storage_bucket": "gameflix-6afb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389301872932:android:2781f187d4405f57",
+        "android_client_info": {
+          "package_name": "com.example.myfirstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389301872932-93ukt0iajkq8dtbg19nph41vmi73f1p9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiau39TJvMv5yc907NFD_JcIcj9aK19nU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389301872932-93ukt0iajkq8dtbg19nph41vmi73f1p9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "389301872932-9k32jcf55ume45crrgvl7gl58f3g3lqc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yourcompany.login"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
